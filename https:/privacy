@@ -1,52 +1,67 @@
-Privacy Policy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Privacy Policy | ProfitFlowOS</title>
+<style>
+body{
+font-family: Arial, sans-serif;
+max-width:800px;
+margin:60px auto;
+line-height:1.6;
+color:#222;
+padding:20px;
+}
+h1{font-size:32px;margin-bottom:20px;}
+h2{margin-top:30px;}
+</style>
+</head>
 
-Last updated: 2026
+<body>
 
-ProfitFlowOS ("we", "our", or "us") operates the website profitflowos.com and the ProfitFlowOS application.
+<h1>Privacy Policy</h1>
 
-This Privacy Policy explains how we collect, use, and protect your information when you use our services.
+<p>Last updated: 2026</p>
 
-Information We Collect
+<p>ProfitFlowOS ("we", "our", or "us") operates the website profitflowos.com and the ProfitFlowOS platform.</p>
 
-When using ProfitFlowOS we may collect:
+<h2>Information We Collect</h2>
 
-• Account information (email address)
-• Usage data related to the dashboard and analytics features
-• Payment information processed securely through Stripe
+<p>When using ProfitFlowOS we may collect:</p>
 
-We do not store credit card information directly. All payments are processed by Stripe.
+<ul>
+<li>Email address</li>
+<li>Usage data related to the dashboard</li>
+<li>Payment information processed securely through Stripe</li>
+</ul>
 
-How We Use Your Information
+<p>We do not store credit card information. All payments are handled by Stripe.</p>
 
-We use collected information to:
+<h2>How We Use Information</h2>
 
-• Provide and operate the ProfitFlowOS platform
-• Improve analytics and forecasting tools
-• Communicate important updates about the service
-• Provide customer support
+<p>We use information to:</p>
 
-Data Security
+<ul>
+<li>Provide and operate the ProfitFlowOS platform</li>
+<li>Improve analytics and forecasting tools</li>
+<li>Provide customer support</li>
+</ul>
 
-We implement reasonable technical and organizational measures to protect your data.
+<h2>Third Party Services</h2>
 
-Payments are processed through Stripe and follow industry security standards.
+<p>ProfitFlowOS uses trusted services including:</p>
 
-Third-Party Services
+<ul>
+<li>Stripe</li>
+<li>Supabase</li>
+<li>Vercel</li>
+</ul>
 
-ProfitFlowOS uses trusted third-party services including:
+<h2>Contact</h2>
 
-• Stripe (payments)
-• Supabase (database infrastructure)
-• Vercel (hosting)
+<p>For privacy questions contact:</p>
 
-These services may process limited information required to operate the platform.
+<p>support@profitflowos.com</p>
 
-Your Rights
-
-You may request deletion of your account and associated data at any time by contacting support.
-
-Contact
-
-For privacy questions contact:
-
-[support@profitflowos.com](mailto:support@profitflowos.com)
+</body>
+</html>
