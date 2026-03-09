@@ -1,0 +1,52 @@
+Privacy Policy
+
+Last updated: 2026
+
+ProfitFlowOS ("we", "our", or "us") operates the website profitflowos.com and the ProfitFlowOS application.
+
+This Privacy Policy explains how we collect, use, and protect your information when you use our services.
+
+Information We Collect
+
+When using ProfitFlowOS we may collect:
+
+• Account information (email address)
+• Usage data related to the dashboard and analytics features
+• Payment information processed securely through Stripe
+
+We do not store credit card information directly. All payments are processed by Stripe.
+
+How We Use Your Information
+
+We use collected information to:
+
+• Provide and operate the ProfitFlowOS platform
+• Improve analytics and forecasting tools
+• Communicate important updates about the service
+• Provide customer support
+
+Data Security
+
+We implement reasonable technical and organizational measures to protect your data.
+
+Payments are processed through Stripe and follow industry security standards.
+
+Third-Party Services
+
+ProfitFlowOS uses trusted third-party services including:
+
+• Stripe (payments)
+• Supabase (database infrastructure)
+• Vercel (hosting)
+
+These services may process limited information required to operate the platform.
+
+Your Rights
+
+You may request deletion of your account and associated data at any time by contacting support.
+
+Contact
+
+For privacy questions contact:
+
+[support@profitflowos.com](mailto:support@profitflowos.com)
