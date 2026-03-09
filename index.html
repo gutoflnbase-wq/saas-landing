@@ -1,86 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Revenue OS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SaaS Landing</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#101722;
+      --panel-2:#0f172a;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --line:rgba(255,255,255,.08);
+      --blue:#3b82f6;
+      --green:#10b981;
+      --yellow:#fbbf24;
+    }
 
-<style>
-body{
-background:#0b0f1a;
-color:white;
-font-family:system-ui;
-margin:0;
-text-align:center;
-}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:radial-gradient(circle at top, rgba(59,130,246,.12), transparent 30%), var(--bg);
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.5;
+    }
 
-.hero{
-padding:120px 20px;
-}
+    .container{
+      width:min(1120px, calc(100% - 40px));
+      margin:0 auto;
+    }
 
-h1{
-font-size:48px;
-margin-bottom:20px;
-}
+    .hero{
+      padding:88px 0 56px;
+      text-align:center;
+    }
 
-p{
-color:#9ca3af;
-font-size:18px;
-}
+    .eyebrow{
+      display:inline-block;
+      padding:6px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:18px;
+      background:rgba(255,255,255,.02);
+    }
 
-.button{
-margin-top:30px;
-display:inline-block;
-padding:14px 28px;
-background:#2563eb;
-border-radius:8px;
-color:white;
-text-decoration:none;
-font-weight:600;
-}
+    h1{
+      margin:0 auto 16px;
+      max-width:820px;
+      font-size:clamp(38px, 6vw, 64px);
+      line-height:1.04;
+      letter-spacing:-0.03em;
+    }
 
-.section{
-padding:80px 20px;
-}
+    .sub{
+      max-width:740px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:18px;
+    }
 
-.card{
-background:#111827;
-padding:30px;
-border-radius:10px;
-max-width:400px;
-margin:auto;
-}
+    .actions{
+      display:flex;
+      gap:14px;
+      justify-content:center;
+      margin-top:28px;
+      flex-wrap:wrap;
+    }
 
-.price{
-font-size:42px;
-margin:20px 0;
-}
-</style>
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 20px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:600;
+      border:1px solid var(--line);
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:var(--blue);
+      color:white;
+      border-color:transparent;
+      box-shadow:0 10px 30px rgba(59,130,246,.18);
+    }
+
+    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.02);
+    }
+
+    .preview-wrap{
+      padding:24px 0 76px;
+    }
+
+    .preview{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:18px;
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
+    }
+
+    .browser{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:16px;
+      padding:6px 8px;
+    }
+
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:rgba(255,255,255,.16);
+    }
+
+    .mock{
+      background:var(--panel);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:18px;
+      padding:20px;
+    }
+
+    .topgrid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-bottom:16px;
+    }
+
+    .mini-card,.chart,.bars,.goal{
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:14px;
+    }
+
+    .mini-card{
+      padding:18px;
+      min-height:102px;
+    }
+
+    .label{
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:8px;
+    }
+
+    .value{
+      font-size:34px;
+      font-weight:700;
+      letter-spacing:-0.03em;
+    }
+
+    .value.green{color:var(--green)}
+    .value.blue{color:#60a5fa}
+    .trend{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .chart{
+      padding:18px;
+      margin-bottom:16px;
+    }
+
+    .bars{
+      display:grid;
+      grid-template-columns:repeat(10,1fr);
+      gap:10px;
+      align-items:end;
+      height:170px;
+      padding:18px;
+    }
+
+    .bar{
+      background:linear-gradient(180deg, rgba(96,165,250,.95), rgba(37,99,235,.45));
+      border-radius:10px 10px 6px 6px;
+      box-shadow:0 0 0 1px rgba(255,255,255,.03) inset;
+    }
+
+    .bottomgrid{
+      display:grid;
+      grid-template-columns:1.1fr 1fr;
+      gap:14px;
+    }
+
+    .goal,.eff{
+      padding:18px;
+    }
+
+    .progress{
+      width:100%;
+      height:8px;
+      background:rgba(255,255,255,.07);
+      border-radius:999px;
+      overflow:hidden;
+      margin-top:12px;
+    }
+
+    .progress > span{
+      display:block;
+      height:100%;
+      border-radius:999px;
+    }
+
+    .p-blue{background:linear-gradient(90deg, #60a5fa, #2563eb)}
+    .p-green{background:linear-gradient(90deg, #34d399, #10b981)}
+    .p-yellow{background:linear-gradient(90deg, #fcd34d, #f59e0b)}
+
+    .section{
+      padding:24px 0 80px;
+    }
+
+    .section h2{
+      font-size:30px;
+      letter-spacing:-0.02em;
+      margin:0 0 10px;
+      text-align:center;
+    }
+
+    .section p.section-sub{
+      color:var(--muted);
+      text-align:center;
+      margin:0 0 34px;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .feature{
+      background:var(--panel-2);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:24px;
+    }
+
+    .feature .icon{
+      width:36px;height:36px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(59,130,246,.12);
+      margin-bottom:14px;
+      color:#93c5fd;
+      font-weight:700;
+    }
+
+    .feature h3{
+      margin:0 0 8px;
+      font-size:18px;
+    }
+
+    .feature p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .pricing{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+      margin-top:8px;
+    }
+
+    .plan{
+      background:var(--panel-2);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:28px;
+      position:relative;
+    }
+
+    .plan.highlight{
+      border-color:rgba(59,130,246,.35);
+      box-shadow:0 0 0 1px rgba(59,130,246,.15), 0 20px 60px rgba(37,99,235,.12);
+    }
+
+    .badge{
+      position:absolute;
+      right:20px;
+      top:20px;
+      font-size:12px;
+      color:#bfdbfe;
+      border:1px solid rgba(96,165,250,.24);
+      background:rgba(59,130,246,.08);
+      padding:6px 10px;
+      border-radius:999px;
+    }
+
+    .plan-name{
+      color:#93c5fd;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      margin-bottom:10px;
+    }
+
+    .price{
+      font-size:48px;
+      font-weight:800;
+      letter-spacing:-0.04em;
+    }
+
+    .price small{
+      font-size:18px;
+      color:var(--muted);
+      font-weight:500;
+    }
+
+    .plan p{
+      color:var(--muted);
+      margin:10px 0 18px;
+    }
+
+    .plan ul{
+      list-style:none;
+      padding:0;
+      margin:18px 0 0;
+    }
+
+    .plan li{
+      padding:8px 0;
+      color:#dbe5f2;
+      border-top:1px solid rgba(255,255,255,.04);
+    }
+
+    .final{
+      text-align:center;
+      padding:18px 0 90px;
+    }
+
+    .final p{
+      color:var(--muted);
+      margin-bottom:20px;
+      font-size:17px;
+    }
+
+    @media (max-width: 900px){
+      .topgrid,.features,.pricing,.bottomgrid{
+        grid-template-columns:1fr;
+      }
+      h1{font-size:42px}
+      .value{font-size:28px}
+      .price{font-size:42px}
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <section class="hero">
+      <div class="eyebrow">Financial operating system for serious creators</div>
+      <h1>See your margin. Forecast your growth. Control your business.</h1>
+      <p class="sub">Revenue tracking, projections, health scoring, and accountant-ready exports — built for creators who treat content like a business.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#">Start Founder Access</a>
+        <a class="btn btn-secondary" href="#">See Pricing</a>
+      </div>
+    </section>
 
-<div class="hero">
-<h1>Turn Your Content Revenue Into Intelligence</h1>
-<p>Track revenue, margins, taxes and growth in one dashboard.</p>
+    <section class="preview-wrap">
+      <div class="preview">
+        <div class="browser">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span style="margin-left:8px;">Dashboard Preview</span>
+        </div>
 
-<a class="button" href="#">Start Free</a>
-</div>
+        <div class="mock">
+          <div class="topgrid">
+            <div class="mini-card">
+              <div class="label">Gross Revenue</div>
+              <div class="value">$12,480</div>
+              <div class="trend">+18.2% this month</div>
+            </div>
+            <div class="mini-card">
+              <div class="label">Net Profit</div>
+              <div class="value green">$9,216</div>
+              <div class="trend">73.8% margin</div>
+            </div>
+            <div class="mini-card">
+              <div class="label">Health Score</div>
+              <div class="value blue">84</div>
+              <div class="trend">Strong</div>
+            </div>
+          </div>
 
-<div class="section">
+          <div class="chart">
+            <div class="label">Monthly Growth</div>
+            <div class="bars">
+              <div class="bar" style="height:28%"></div>
+              <div class="bar" style="height:32%"></div>
+              <div class="bar" style="height:30%"></div>
+              <div class="bar" style="height:42%"></div>
+              <div class="bar" style="height:38%"></div>
+              <div class="bar" style="height:46%"></div>
+              <div class="bar" style="height:48%"></div>
+              <div class="bar" style="height:58%"></div>
+              <div class="bar" style="height:55%"></div>
+              <div class="bar" style="height:63%"></div>
+            </div>
+          </div>
 
-<div class="card">
-<h2>Founder Plan</h2>
+          <div class="bottomgrid">
+            <div class="eff mini-card">
+              <div class="label">Revenue Efficiency</div>
+              <div style="color:var(--muted);font-size:14px;margin-top:12px;">You Keep</div>
+              <div class="progress"><span class="p-green" style="width:73.8%"></span></div>
+              <div style="color:var(--muted);font-size:14px;margin-top:14px;">Taxes</div>
+              <div class="progress"><span class="p-yellow" style="width:18.4%"></span></div>
+            </div>
 
-<div class="price">$19 / month</div>
+            <div class="goal mini-card">
+              <div class="label">Monthly Goal</div>
+              <div class="value" style="font-size:28px">$9.2k <span style="font-size:16px;color:var(--muted);font-weight:500;">of $12k</span></div>
+              <div class="progress"><span class="p-blue" style="width:76.7%"></span></div>
+              <div class="trend">76.7% achieved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<p>Early access pricing. Locked forever.</p>
+    <section class="section">
+      <h2>Built for creators who run real businesses</h2>
+      <p class="section-sub">Everything you need to understand what you earn, what you lose, and what you actually keep.</p>
 
-<a class="button" href="#">Get Access</a>
+      <div class="features">
+        <div class="feature">
+          <div class="icon">↗</div>
+          <h3>Growth Tracking</h3>
+          <p>Monitor revenue, profit, and pace over time with clean executive visuals.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">%</div>
+          <h3>Margin Visibility</h3>
+          <p>Break down fees, taxes, and true net profit across all your revenue sources.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">⇩</div>
+          <h3>Accountant Export</h3>
+          <p>Generate clear financial exports your accountant can actually use.</p>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="section">
+      <h2>Simple pricing. Serious performance.</h2>
+      <p class="section-sub">Choose the plan that matches your stage and keep your business financially clear from day one.</p>
 
-</div>
+      <div class="pricing">
+        <div class="plan highlight">
+          <div class="badge">Founder</div>
+          <div class="plan-name">Founder Access</div>
+          <div class="price">$19<small>/mo</small></div>
+          <p>Locked lifetime rate for early members.</p>
+          <a class="btn btn-primary" href="#" style="width:100%;">Claim Founder Access</a>
+          <ul>
+            <li>Full dashboard access</li>
+            <li>Growth Health Score</li>
+            <li>Monthly projections</li>
+            <li>Accountant-ready export</li>
+            <li>Lifetime founder pricing</li>
+          </ul>
+        </div>
 
+        <div class="plan">
+          <div class="plan-name">Pro</div>
+          <div class="price">$29<small>/mo</small></div>
+          <p>Advanced tools for long-term operators.</p>
+          <a class="btn btn-secondary" href="#" style="width:100%;">Start Pro</a>
+          <ul>
+            <li>Everything in Founder</li>
+            <li>Advanced projections</li>
+            <li>Revenue Intelligence</li>
+            <li>Priority support</li>
+            <li>Future AI tools</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <p>Built for creators who want control, not spreadsheets.</p>
+      <a class="btn btn-primary" href="#">Start Founder Access</a>
+    </section>
+  </div>
 </body>
 </html>
