@@ -1,27 +1,49 @@
-Refund Policy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Refund Policy | ProfitFlowOS</title>
+<style>
+body{
+font-family: Arial, sans-serif;
+max-width:800px;
+margin:60px auto;
+line-height:1.6;
+color:#222;
+padding:20px;
+}
+h1{font-size:32px;margin-bottom:20px;}
+h2{margin-top:30px;}
+</style>
+</head>
 
-Last updated: 2026
+<body>
 
-ProfitFlowOS offers subscription-based access to the platform.
+<h1>Refund Policy</h1>
 
-Monthly Plans
+<p>Last updated: 2026</p>
 
-Monthly subscriptions may be canceled at any time. Access remains active until the end of the billing cycle.
+<h2>Subscriptions</h2>
 
-Annual Plans
+<p>ProfitFlowOS offers subscription based access.</p>
 
-Annual plans are discounted and are generally non-refundable once access has been granted.
+<h2>Monthly Plans</h2>
 
-However, we may review refund requests on a case-by-case basis if requested within 7 days of purchase.
+<p>Monthly plans may be cancelled anytime. Access remains active until the end of the billing cycle.</p>
 
-Cancellations
+<h2>Annual Plans</h2>
 
-Users can cancel subscriptions through their account settings or via the Stripe billing portal.
+<p>Annual plans are discounted and generally non-refundable after purchase.</p>
 
-After cancellation, the subscription will remain active until the end of the current billing period.
+<p>Refund requests may be reviewed within 7 days of purchase.</p>
 
-Contact
+<h2>Cancellations</h2>
 
-For refund requests or billing questions contact:
+<p>Users can cancel subscriptions through their account or via Stripe billing portal.</p>
 
-[support@profitflowos.com](mailto:support@profitflowos.com)
+<h2>Contact</h2>
+
+<p>support@profitflowos.com</p>
+
+</body>
+</html>
