@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Refund Policy | ProfitFlowOS</title>
+<title>Terms of Service | ProfitFlowOS</title>
 <style>
 body{
 font-family: Arial, sans-serif;
@@ -19,27 +19,37 @@ h2{margin-top:30px;}
 
 <body>
 
-<h1>Refund Policy</h1>
+<h1>Terms of Service</h1>
 
 <p>Last updated: 2026</p>
 
+<p>By accessing ProfitFlowOS you agree to these terms.</p>
+
+<h2>Service Description</h2>
+
+<p>ProfitFlowOS provides analytics tools designed to help creators and digital businesses track revenue, profit margin and growth.</p>
+
+<h2>User Responsibilities</h2>
+
+<ul>
+<li>Provide accurate account information</li>
+<li>Use the platform legally</li>
+<li>Not attempt to reverse engineer the service</li>
+</ul>
+
 <h2>Subscriptions</h2>
 
-<p>ProfitFlowOS offers subscription based access.</p>
+<p>ProfitFlowOS operates on a subscription model. Billing may be monthly or annual depending on the selected plan.</p>
 
-<h2>Monthly Plans</h2>
+<p>Payments are securely processed through Stripe.</p>
 
-<p>Monthly plans may be cancelled anytime. Access remains active until the end of the billing cycle.</p>
+<h2>Intellectual Property</h2>
 
-<h2>Annual Plans</h2>
+<p>All software, branding and platform features belong to ProfitFlowOS.</p>
 
-<p>Annual plans are discounted and generally non-refundable after purchase.</p>
+<h2>Limitation of Liability</h2>
 
-<p>Refund requests may be reviewed within 7 days of purchase.</p>
-
-<h2>Cancellations</h2>
-
-<p>Users can cancel subscriptions through their account or via Stripe billing portal.</p>
+<p>ProfitFlowOS provides financial analytics tools but does not provide financial or legal advice.</p>
 
 <h2>Contact</h2>
 
