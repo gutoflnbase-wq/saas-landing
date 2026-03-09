@@ -1,49 +1,49 @@
-Terms of Service
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Refund Policy | ProfitFlowOS</title>
+<style>
+body{
+font-family: Arial, sans-serif;
+max-width:800px;
+margin:60px auto;
+line-height:1.6;
+color:#222;
+padding:20px;
+}
+h1{font-size:32px;margin-bottom:20px;}
+h2{margin-top:30px;}
+</style>
+</head>
 
-Last updated: 2026
+<body>
 
-By accessing or using ProfitFlowOS you agree to the following terms.
+<h1>Refund Policy</h1>
 
-Service Description
+<p>Last updated: 2026</p>
 
-ProfitFlowOS provides financial analytics tools designed to help digital creators and operators track revenue, profit margins, and business growth.
+<h2>Subscriptions</h2>
 
-User Responsibilities
+<p>ProfitFlowOS offers subscription based access.</p>
 
-You agree to:
+<h2>Monthly Plans</h2>
 
-• Provide accurate account information
-• Use the service only for lawful purposes
-• Not attempt to disrupt or reverse engineer the platform
+<p>Monthly plans may be cancelled anytime. Access remains active until the end of the billing cycle.</p>
 
-Subscriptions
+<h2>Annual Plans</h2>
 
-ProfitFlowOS operates on a subscription basis.
+<p>Annual plans are discounted and generally non-refundable after purchase.</p>
 
-Plans may include monthly or annual billing depending on the selected plan.
+<p>Refund requests may be reviewed within 7 days of purchase.</p>
 
-Payments are processed securely through Stripe.
+<h2>Cancellations</h2>
 
-Intellectual Property
+<p>Users can cancel subscriptions through their account or via Stripe billing portal.</p>
 
-All software, design, branding, and content associated with ProfitFlowOS remain the property of ProfitFlowOS.
+<h2>Contact</h2>
 
-Users may not copy, redistribute, or reproduce any part of the service without permission.
+<p>support@profitflowos.com</p>
 
-Service Availability
-
-We aim to maintain reliable service but cannot guarantee uninterrupted access.
-
-The platform may be updated or modified periodically.
-
-Limitation of Liability
-
-ProfitFlowOS provides financial analytics tools but does not provide financial, tax, or legal advice.
-
-Users remain responsible for their own financial decisions.
-
-Contact
-
-For support or legal inquiries contact:
-
-[support@profitflowos.com](mailto:support@profitflowos.com)
+</body>
+</html>
