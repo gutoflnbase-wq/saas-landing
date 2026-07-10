@@ -3,1131 +3,924 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProfitFlowOS — Financial Clarity for Serious Creators</title>
+
+  <title>ProfitFlowOS — Financial clarity for subscription creators</title>
   <meta
     name="description"
-    content="Track revenue, understand margin, forecast growth, and control your business with ProfitFlowOS."
+    content="Track revenue, fees, profit, and tax reserve across platforms without spreadsheet chaos."
   />
+
   <style>
-    :root{
-      --bg:#07101a;
-      --bg-2:#0b1624;
-      --panel:#0f1b2b;
-      --text:#f8fafc;
-      --muted:#94a3b8;
-      --muted-2:#7b8aa3;
-      --line:rgba(255,255,255,.08);
-      --line-2:rgba(96,165,250,.22);
-      --blue:#3b82f6;
-      --blue-2:#60a5fa;
-      --green:#10b981;
-      --yellow:#fbbf24;
-      --max:1120px;
-      --shadow:0 24px 70px rgba(0,0,0,.34);
+    :root {
+      --bg: #06101f;
+      --bg-2: #0a1428;
+      --panel: rgba(10, 20, 40, 0.84);
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #f5f7fb;
+      --muted: #a7b2c8;
+      --muted-2: #7f8aa3;
+      --blue: #4d8dff;
+      --green: #22d3a6;
+      --yellow: #f5b942;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --max: 1200px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      color:var(--text);
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      line-height:1.5;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at top center, rgba(59,130,246,.14), transparent 24%),
-        radial-gradient(circle at 18% 10%, rgba(16,185,129,.05), transparent 18%),
-        linear-gradient(180deg, #06101a 0%, #07101a 100%);
+        radial-gradient(circle at 20% 0%, rgba(62, 107, 255, 0.15), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(34, 211, 166, 0.08), transparent 25%),
+        linear-gradient(180deg, #030814 0%, #06101f 38%, #071325 100%);
+      line-height: 1.45;
     }
 
-    a{color:inherit;text-decoration:none}
-
-    .container{
-      width:min(var(--max), calc(100% - 40px));
-      margin:0 auto;
-    }
-
-    .section{padding:48px 0}
-    .section-tight{padding:32px 0 48px}
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 14px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.02);
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .eyebrow::before{
-      content:"";
-      width:9px;
-      height:9px;
-      border-radius:50%;
-      background:linear-gradient(180deg, var(--blue-2), var(--blue));
-      box-shadow:0 0 0 6px rgba(59,130,246,.12);
-    }
-
-    .btn{
-      min-height:52px;
-      padding:0 22px;
-      border-radius:14px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border:1px solid transparent;
-      font-weight:600;
-      font-size:16px;
-      cursor:pointer;
-      transition:.2s ease;
-      white-space:nowrap;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .btn:hover{transform:translateY(-1px)}
-
-    .btn-primary{
-      color:#fff;
-      background:linear-gradient(180deg, #4f8fff, #3b82f6);
-      box-shadow:0 14px 34px rgba(59,130,246,.22);
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
     }
 
-    .btn-secondary{
-      color:var(--text);
-      background:rgba(255,255,255,.03);
-      border-color:var(--line);
+    .nav {
+      padding: 20px 0 8px;
     }
 
-    .hero{
-      padding:48px 0 10px;
-      text-align:center;
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
-    .hero h1{
-      margin:22px auto 16px;
-      max-width:980px;
-      font-size:clamp(40px, 6vw, 72px);
-      line-height:1.02;
-      letter-spacing:-.045em;
-      font-weight:800;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: -0.03em;
     }
 
-    .hero p{
-      margin:0 auto;
-      max-width:820px;
-      color:var(--muted);
-      font-size:clamp(18px, 2vw, 22px);
-      line-height:1.55;
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--green), var(--blue));
+      display: grid;
+      place-items: center;
+      color: #03111f;
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(77, 141, 255, 0.2);
     }
 
-    .hero-actions{
-      margin-top:28px;
-      display:flex;
-      gap:14px;
-      justify-content:center;
-      flex-wrap:wrap;
+    .nav-actions,
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .hero-note{
-      margin-top:14px;
-      color:var(--muted-2);
-      font-size:14px;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 16px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+      cursor: pointer;
     }
 
-    .preview-shell{
-      margin-top:30px;
-      padding:18px;
-      border-radius:28px;
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
+    .btn-primary {
+      background: linear-gradient(180deg, #5b97ff, #3d7cff);
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(61, 124, 255, 0.24);
     }
 
-    .browser-bar{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      padding:4px 6px 16px;
-      color:var(--muted);
-      font-size:13px;
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
     }
 
-    .browser-dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:rgba(255,255,255,.16);
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
     }
 
-    .preview-panel{
-      border-radius:24px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.05);
-      background:linear-gradient(180deg, #0d1725 0%, #0b1624 100%);
-      padding:20px;
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.06);
     }
 
-    .preview-top{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-      margin-bottom:16px;
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.02);
+      font-size: 14px;
     }
 
-    .metric-card,.chart-card,.split-card,.pain-card,.feature-card,.plan-card,.compare,.cta-band{
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.014));
-      border:1px solid var(--line);
-      border-radius:22px;
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 14px rgba(77, 141, 255, 0.8);
     }
 
-    .metric-card{
-      padding:22px;
-      min-height:126px;
+    .hero {
+      padding: 48px 0 36px;
+      text-align: center;
     }
 
-    .metric-label{
-      margin-bottom:12px;
-      color:var(--muted);
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
+    .hero h1 {
+      margin: 18px auto 18px;
+      max-width: 980px;
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      font-weight: 900;
     }
 
-    .metric-value{
-      font-size:42px;
-      line-height:1;
-      font-weight:800;
-      letter-spacing:-.04em;
+    .hero h1 .accent {
+      color: var(--blue);
     }
-
-    .metric-value.green{color:var(--green)}
-    .metric-value.blue{color:var(--blue-2)}
 
-    .metric-sub{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:14px;
+    .hero p {
+      margin: 0 auto;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: clamp(18px, 2.4vw, 22px);
     }
 
-    .chart-card{
-      padding:20px;
-      margin-bottom:16px;
+    .hero-actions {
+      margin-top: 28px;
+      justify-content: center;
     }
 
-    .chart-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:16px;
+    .hero-note {
+      margin-top: 16px;
+      color: var(--muted-2);
+      font-size: 15px;
     }
 
-    .chart-title{
-      color:var(--muted);
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
+    .hero-panel {
+      margin-top: 36px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      box-shadow: var(--shadow);
+      padding: 26px;
+      text-align: left;
     }
 
-    .chart-meta{
-      color:var(--muted);
-      font-size:14px;
+    .hero-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
 
-    .growth-chart{
-      position:relative;
-      height:250px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.05);
-      background:linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,.008));
-      overflow:hidden;
-      padding:18px 18px 14px;
+    .mini-card,
+    .list-card,
+    .insight-card,
+    .card,
+    .step-card,
+    .plan {
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(10,20,40,0.88), rgba(7,16,31,0.92));
+      box-shadow: var(--shadow);
     }
 
-    .growth-grid{
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(to top, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size:10% 100%, 100% 25%;
-      opacity:.55;
-      pointer-events:none;
+    .mini-card {
+      padding: 18px;
     }
 
-    .growth-bars{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns:repeat(10, 1fr);
-      gap:10px;
-      align-items:end;
-      height:100%;
+    .mini-card-label {
+      color: var(--muted-2);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      font-weight: 800;
     }
 
-    .growth-col{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-end;
-      height:100%;
-      gap:10px;
+    .mini-card-value {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
     }
 
-    .bar-track{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:flex-end;
+    .mini-card-note {
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    .bar-fill{
-      width:100%;
-      min-height:18px;
-      border-radius:12px 12px 8px 8px;
-      background:linear-gradient(180deg, #6ea8ff 0%, #4f8fff 38%, #2f6fe0 100%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.18),
-        0 10px 24px rgba(59,130,246,.18);
-      transition:opacity .2s ease, transform .2s ease;
-    }
+    .green { color: var(--green); }
+    .blue { color: var(--blue); }
+    .yellow { color: var(--yellow); }
 
-    .growth-col:hover .bar-fill{
-      opacity:.92;
-      transform:translateY(-2px);
+    .hero-panel-bottom {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
     }
 
-    .growth-col span{
-      font-size:12px;
-      color:var(--muted);
-      letter-spacing:.02em;
+    .list-card,
+    .insight-card {
+      padding: 22px;
     }
 
-    .preview-bottom{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
+    .list-card h3,
+    .insight-card h3 {
+      margin: 0 0 14px;
+      font-size: 18px;
+      letter-spacing: -0.02em;
     }
-
-    .split-card{padding:22px}
 
-    .progress-row{margin-top:14px}
-    .progress-label{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:8px;
-      color:var(--muted);
-      font-size:14px;
+    .income-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
-    .progress{
-      width:100%;
-      height:10px;
-      background:rgba(255,255,255,.07);
-      border-radius:999px;
-      overflow:hidden;
+    .income-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 15px;
     }
 
-    .progress > span{
-      display:block;
-      height:100%;
-      border-radius:999px;
+    .income-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
     }
 
-    .p-blue{background:linear-gradient(90deg, var(--blue-2), var(--blue))}
-    .p-green{background:linear-gradient(90deg, #34d399, var(--green))}
-    .p-yellow{background:linear-gradient(90deg, #fcd34d, #f59e0b)}
-
-    .section-head{
-      text-align:center;
-      margin-bottom:28px;
+    .income-name {
+      color: var(--text);
+      font-weight: 600;
     }
 
-    .section-head h2{
-      margin:0 0 12px;
-      font-size:clamp(30px, 4vw, 52px);
-      line-height:1.08;
-      letter-spacing:-.03em;
+    .section {
+      padding: 72px 0 10px;
     }
 
-    .section-head p{
-      max-width:760px;
-      margin:0 auto;
-      color:var(--muted);
-      font-size:19px;
+    .section h2,
+    .pricing h2 {
+      margin: 0 auto 16px;
+      max-width: 1000px;
+      text-align: center;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
     }
 
-    .pain-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
+    .section .sub,
+    .pricing .sub {
+      margin: 0 auto 34px;
+      max-width: 850px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 20px;
     }
 
-    .pain-card,.feature-card{
-      padding:26px;
+    .grid-3,
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
     }
 
-    .pain-card h3,.feature-card h3{
-      margin:0 0 10px;
-      font-size:22px;
-      line-height:1.14;
-      letter-spacing:-.02em;
+    .card,
+    .step-card {
+      padding: 28px;
     }
 
-    .pain-card p,.feature-card p{
-      margin:0;
-      color:var(--muted);
-      font-size:17px;
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(77, 141, 255, 0.12);
+      color: var(--blue);
+      font-size: 22px;
+      margin-bottom: 18px;
     }
 
-    .features-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
+    .card h3,
+    .step-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
 
-    .feature-icon{
-      width:40px;
-      height:40px;
-      border-radius:12px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(59,130,246,.12);
-      color:#bfdbfe;
-      font-size:18px;
-      font-weight:700;
-      margin-bottom:18px;
+    .card p,
+    .step-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
     }
 
-    .pricing-wrap{
-      max-width:1040px;
-      margin:0 auto;
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+      background: rgba(77, 141, 255, 0.18);
+      border: 1px solid rgba(77, 141, 255, 0.35);
+      margin-bottom: 18px;
     }
 
-    .toggle{
-      display:flex;
-      justify-content:center;
-      margin-bottom:22px;
+    .pricing {
+      padding: 80px 0 90px;
     }
 
-    .toggle-shell{
-      display:inline-flex;
-      gap:6px;
-      padding:6px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.02);
+    .pricing-bridge {
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 13px;
+      margin-bottom: 34px;
     }
 
-    .toggle-shell button{
-      border:0;
-      background:transparent;
-      color:var(--muted);
-      border-radius:10px;
-      padding:10px 14px;
-      font-size:14px;
-      font-weight:600;
-      cursor:pointer;
+    .plans {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: start;
     }
 
-    .toggle-shell button.active{
-      background:rgba(255,255,255,.06);
-      color:var(--text);
+    .plan {
+      padding: 28px;
     }
 
-    .plans-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:18px;
+    .plan--primary {
+      border-color: rgba(77, 141, 255, 0.35);
+      box-shadow: 0 18px 46px rgba(61, 124, 255, 0.18);
     }
 
-    .plan-card{
-      padding:30px;
-      position:relative;
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #8bb3ff;
+      margin-bottom: 8px;
+      font-weight: 800;
     }
 
-    .plan-card.highlight{
-      border-color:var(--line-2);
-      box-shadow:0 0 0 1px rgba(59,130,246,.12), 0 18px 50px rgba(59,130,246,.08);
+    .eyebrow-neutral {
+      color: #b8c1d8;
     }
 
-    .plan-badge{
-      position:absolute;
-      top:18px;
-      right:18px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(59,130,246,.08);
-      border:1px solid rgba(96,165,250,.2);
-      color:#bfdbfe;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:700;
+    .micro {
+      font-size: 11px;
+      color: var(--muted-2);
+      margin-bottom: 10px;
     }
 
-    .plan-label{
-      margin-bottom:10px;
-      color:#93c5fd;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
+    .tagline {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 18px;
+      max-width: 520px;
     }
 
-    .plan-title{
-      margin:0 0 10px;
-      font-size:22px;
-      line-height:1.2;
-      letter-spacing:-.02em;
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 12px 0 8px;
     }
 
-    .plan-desc{
-      min-height:52px;
-      margin-bottom:18px;
-      color:var(--muted);
-      font-size:16px;
+    .price strong {
+      font-size: 64px;
+      line-height: 1;
+      letter-spacing: -0.05em;
     }
 
-    .price-row{
-      display:flex;
-      align-items:flex-end;
-      gap:8px;
-      margin-bottom:8px;
+    .price span {
+      color: var(--muted);
+      font-size: 30px;
+      font-weight: 700;
     }
 
-    .price{
-      font-size:60px;
-      line-height:.95;
-      font-weight:800;
-      letter-spacing:-.05em;
+    .support-copy {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 14px 0 18px;
     }
 
-    .period{
-      color:var(--muted);
-      font-size:22px;
-      padding-bottom:8px;
+    .mini-title {
+      margin-top: 18px;
+      margin-bottom: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted-2);
+      font-weight: 800;
     }
 
-    .price-note{
-      margin-bottom:20px;
-      color:var(--muted-2);
-      font-size:14px;
+    .mini-bullets,
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .plan-card .btn{
-      width:100%;
-      margin-bottom:18px;
+    .mini-bullets li,
+    .feature-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--text);
     }
 
-    .plan-features{
-      list-style:none;
-      padding:0;
-      margin:0;
-      border-top:1px solid rgba(255,255,255,.05);
+    .mini-bullets li {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
     }
 
-    .plan-features li{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding:11px 0;
-      border-top:1px solid rgba(255,255,255,.04);
-      color:#dde7f4;
-      font-size:16px;
+    .feature-list li {
+      padding: 12px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 15px;
     }
 
-    .plan-features li:first-child{border-top:0}
-    .plan-features li::before{
-      content:"✓";
-      color:#93c5fd;
-      font-weight:700;
-      flex:0 0 auto;
-      margin-top:1px;
+    .check {
+      color: var(--green);
+      font-weight: 800;
+      flex: 0 0 auto;
     }
 
-    .compare{
-      margin-top:26px;
-      overflow:hidden;
+    .muted-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .compare-head,
-    .compare-row{
-      display:grid;
-      grid-template-columns:1.8fr .45fr .45fr;
-      gap:16px;
-      align-items:center;
-      padding:15px 22px;
+    .muted-link:hover {
+      color: var(--text);
     }
 
-    .compare-head{
-      border-bottom:1px solid rgba(255,255,255,.06);
-      color:var(--muted);
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
+    .reassure {
+      margin-top: 12px;
+      color: var(--muted-2);
+      font-size: 11px;
+      text-align: center;
     }
 
-    .compare-group{
-      padding:18px 22px 8px;
-      color:var(--muted);
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
+    .recommended {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(77, 141, 255, 0.25);
+      color: #bdd0ff;
+      font-size: 12px;
+      margin-bottom: 14px;
     }
 
-    .compare-row{
-      border-top:1px solid rgba(255,255,255,.05);
-      font-size:16px;
+    .compare-note {
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 12px;
+      margin-top: 18px;
     }
 
-    .compare-row .yes,
-    .compare-row .no{
-      text-align:center;
-      font-weight:700;
-      font-size:18px;
+    .footer {
+      padding: 30px 0 60px;
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 13px;
     }
-
-    .compare-row .yes{color:#bfdbfe}
-    .compare-row .no{color:rgba(255,255,255,.16)}
 
-    .cta-band{
-      margin-top:28px;
-      padding:24px 28px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
+    .footer-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
-    .cta-band p{
-      margin:0;
-      color:var(--muted);
-      font-size:18px;
+    .footer-links a {
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .cta-band strong{color:var(--text)}
-
-    footer{
-      margin-top:46px;
-      padding:30px 0 48px;
-      border-top:1px solid rgba(255,255,255,.08);
-      text-align:center;
-      color:var(--muted);
-      font-size:14px;
+    .footer-links a:hover {
+      color: var(--text);
     }
-
-    footer .footer-line{margin-top:12px}
-    footer a{color:#c7ddff}
-    footer a:hover{text-decoration:underline}
 
-    @media (max-width: 980px){
-      .preview-top,
-      .preview-bottom,
-      .pain-grid,
-      .features-grid,
-      .plans-grid{
-        grid-template-columns:1fr;
+    @media (max-width: 1024px) {
+      .hero-panel-grid,
+      .hero-panel-bottom,
+      .grid-3,
+      .steps,
+      .plans {
+        grid-template-columns: 1fr;
       }
 
-      .compare-head,
-      .compare-row{
-        grid-template-columns:1.3fr .5fr .5fr;
+      .price strong {
+        font-size: 54px;
       }
-
-      .cta-band{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .price{font-size:52px}
     }
 
-    @media (max-width: 720px){
-      .container{
-        width:min(var(--max), calc(100% - 24px));
+    @media (max-width: 680px) {
+      .container {
+        width: min(var(--max), calc(100% - 20px));
       }
 
-      .section{padding:44px 0}
-      .section-tight{padding:24px 0 44px}
-
-      .hero{
-        padding:48px 0 10px;
+      .hero {
+        padding-top: 28px;
       }
 
-      .hero h1{
-        font-size:42px;
+      .section,
+      .pricing {
+        padding-top: 54px;
       }
 
-      .hero p,
-      .section-head p,
-      .pain-card p,
-      .feature-card p,
-      .cta-band p{
-        font-size:16px;
+      .card,
+      .step-card,
+      .plan,
+      .hero-panel,
+      .mini-card,
+      .list-card,
+      .insight-card {
+        padding: 22px;
       }
 
-      .hero-actions{
-        flex-direction:column;
-        align-items:stretch;
+      .price strong {
+        font-size: 46px;
       }
 
-      .btn{width:100%}
-
-      .preview-shell{
-        padding:12px;
-        border-radius:22px;
-      }
-
-      .preview-panel{
-        padding:14px;
-        border-radius:18px;
-      }
-
-      .metric-value{font-size:34px}
-
-      .growth-chart{
-        height:220px;
-        padding:14px 12px 12px;
-      }
-
-      .growth-bars{gap:8px}
-      .growth-col span{font-size:11px}
-
-      .compare{
-        overflow:auto;
-      }
-
-      .compare-head,
-      .compare-row{
-        min-width:620px;
+      .price span {
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
-  <main>
-    <section class="hero">
-      <div class="container">
-        <div class="eyebrow">Financial operating system for serious creators</div>
 
-        <h1>See your margin. Forecast your growth. Control your business.</h1>
-
-        <p>
-          ProfitFlowOS gives serious creators a clear view of revenue, fees, profit, and business
-          performance — without spreadsheet chaos.
-        </p>
-
-        <div class="hero-actions">
-          <a
-            class="btn btn-primary"
-            href="https://saa-s-starter-kit-gutoflnbase.replit.app/quick-start"
-          >
-            Start Founder Access
-          </a>
-
-          <a class="btn btn-secondary" href="#pricing">
-            See Pricing
-          </a>
-        </div>
-
-        <div class="hero-note">
-          Built for creators who want control, not spreadsheets.
-        </div>
-
-        <div class="preview-shell">
-          <div class="browser-bar">
-            <span class="browser-dot"></span>
-            <span class="browser-dot"></span>
-            <span class="browser-dot"></span>
-            <span style="margin-left:8px;">Dashboard Preview</span>
-          </div>
-
-          <div class="preview-panel">
-            <div class="preview-top">
-              <div class="metric-card">
-                <div class="metric-label">Gross Revenue</div>
-                <div class="metric-value">$12,480</div>
-                <div class="metric-sub">+18.2% this month</div>
-              </div>
-
-              <div class="metric-card">
-                <div class="metric-label">Net Profit</div>
-                <div class="metric-value green">$9,216</div>
-                <div class="metric-sub">73.8% margin</div>
-              </div>
-
-              <div class="metric-card">
-                <div class="metric-label">Health Score</div>
-                <div class="metric-value blue">84</div>
-                <div class="metric-sub">Strong</div>
-              </div>
-            </div>
-
-            <div class="chart-card">
-              <div class="chart-head">
-                <div class="chart-title">Monthly Growth</div>
-                <div class="chart-meta">Revenue vs performance over time</div>
-              </div>
-
-              <div class="growth-chart">
-                <div class="growth-grid"></div>
-
-                <div class="growth-bars">
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:28%;"></div></div>
-                    <span>Jan</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:34%;"></div></div>
-                    <span>Feb</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:31%;"></div></div>
-                    <span>Mar</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:43%;"></div></div>
-                    <span>Apr</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:39%;"></div></div>
-                    <span>May</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:47%;"></div></div>
-                    <span>Jun</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:49%;"></div></div>
-                    <span>Jul</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:60%;"></div></div>
-                    <span>Aug</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:56%;"></div></div>
-                    <span>Sep</span>
-                  </div>
-                  <div class="growth-col">
-                    <div class="bar-track"><div class="bar-fill" style="height:65%;"></div></div>
-                    <span>Oct</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="preview-bottom">
-              <div class="split-card">
-                <div class="metric-label">Revenue Efficiency</div>
-
-                <div class="progress-row">
-                  <div class="progress-label">
-                    <span>You Keep</span>
-                    <span>73.8%</span>
-                  </div>
-                  <div class="progress"><span class="p-green" style="width:73.8%"></span></div>
-                </div>
-
-                <div class="progress-row">
-                  <div class="progress-label">
-                    <span>Taxes</span>
-                    <span>18.4%</span>
-                  </div>
-                  <div class="progress"><span class="p-yellow" style="width:18.4%"></span></div>
-                </div>
-              </div>
-
-              <div class="split-card">
-                <div class="metric-label">Monthly Goal</div>
-                <div class="metric-value" style="font-size:30px;">
-                  $9.2k
-                  <span style="font-size:17px;color:var(--muted);font-weight:500;">of $12k</span>
-                </div>
-
-                <div class="progress-row">
-                  <div class="progress-label">
-                    <span>Progress</span>
-                    <span>76.7% achieved</span>
-                  </div>
-                  <div class="progress"><span class="p-blue" style="width:76.7%"></span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <div>ProfitFlowOS</div>
       </div>
-    </section>
 
-    <section class="section-tight">
-      <div class="container">
-        <div class="section-head">
-          <h2>Your creator business is growing. Your financial clarity probably isn’t.</h2>
-          <p>
-            Most creators can track views. Very few can clearly track margin, fees, taxes,
-            and what they actually keep.
-          </p>
-        </div>
-
-        <div class="pain-grid">
-          <div class="pain-card">
-            <h3>Revenue is fragmented</h3>
-            <p>
-              Income comes from multiple platforms, offers, and subscriptions — but the full
-              financial picture stays disconnected.
-            </p>
-          </div>
-
-          <div class="pain-card">
-            <h3>Margin is hard to see</h3>
-            <p>
-              Fees, taxes, and platform cuts quietly eat profit while gross revenue still
-              looks healthy on the surface.
-            </p>
-          </div>
-
-          <div class="pain-card">
-            <h3>Manual tracking creates friction</h3>
-            <p>
-              The more serious the business gets, the more painful spreadsheets and manual
-              finance tracking become.
-            </p>
-          </div>
-        </div>
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="#pricing">See Pricing</a>
+        <a class="btn btn-primary" href="https://profitflowos.com/preview">Start Founder Access</a>
       </div>
-    </section>
-
-    <section class="section-tight">
-      <div class="container">
-        <div class="section-head">
-          <h2>Built for creators who run real businesses</h2>
-          <p>
-            Everything you need to understand what you earn, what you lose,
-            and what you actually keep.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">↗</div>
-            <h3>Revenue Tracking</h3>
-            <p>
-              Track income across platforms in one place with a cleaner view of business performance.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">%</div>
-            <h3>Margin Visibility</h3>
-            <p>
-              Understand fees, taxes, and real net profit instead of relying on top-line revenue alone.
-            </p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">⇩</div>
-            <h3>Forecasting &amp; Control</h3>
-            <p>
-              Spot patterns, track progress, and make better financial decisions with less chaos.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="section-tight">
-      <div class="container pricing-wrap">
-        <div class="section-head" style="margin-bottom:24px;">
-          <h2>Simple pricing. Serious performance.</h2>
-          <p>
-            Choose the plan that matches your stage and keep your business financially
-            clear from day one.
-          </p>
-        </div>
-
-        <div class="toggle" aria-hidden="true">
-          <div class="toggle-shell">
-            <button class="active" type="button">Monthly</button>
-            <button type="button">
-              Yearly <span style="color:var(--green);margin-left:4px;">2 months free</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-label">Founder</div>
-            <h3 class="plan-title">Core financial clarity for serious operators.</h3>
-            <div class="plan-desc">
-              Everything you need to track revenue, fees, and profit clearly.
-            </div>
-
-            <div class="price-row">
-              <div class="price">$19</div>
-              <div class="period">/mo</div>
-            </div>
-
-            <div class="price-note">Locked founder rate · cancel anytime</div>
-
-            <a
-              class="btn btn-secondary"
-              href="https://saa-s-starter-kit-gutoflnbase.replit.app/quick-start"
-            >
-              Choose Founder
-            </a>
-
-            <ul class="plan-features">
-              <li>Revenue dashboard</li>
-              <li>Platform fee breakdown</li>
-              <li>Net profit tracking</li>
-              <li>Income history</li>
-              <li>Accountant export</li>
-              <li>Monthly goal tracking</li>
-              <li>Growth health score</li>
-              <li>Locked founder rate</li>
-            </ul>
-          </div>
-
-          <div class="plan-card highlight">
-            <div class="plan-badge">Recommended</div>
-            <div class="plan-label">Pro</div>
-            <h3 class="plan-title">Advanced financial intelligence for operators ready to scale.</h3>
-            <div class="plan-desc">
-              Higher-leverage insights for teams growing with more precision.
-            </div>
-
-            <div class="price-row">
-              <div class="price">$29</div>
-              <div class="period">/mo</div>
-            </div>
-
-            <div class="price-note">Cancel anytime</div>
-
-            <a
-              class="btn btn-primary"
-              href="https://saa-s-starter-kit-gutoflnbase.replit.app/quick-start"
-            >
-              Upgrade to Pro
-            </a>
-
-            <ul class="plan-features">
-              <li>Everything in Founder</li>
-              <li>Advanced projections</li>
-              <li>Revenue intelligence</li>
-              <li>Revenue efficiency panel</li>
-              <li>Priority support</li>
-              <li>Future AI tools</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="compare">
-          <div class="compare-head">
-            <div>Feature</div>
-            <div style="text-align:center;">Founder</div>
-            <div style="text-align:center;">Pro</div>
-          </div>
-
-          <div class="compare-group">Core Tracking</div>
-          <div class="compare-row">
-            <div>Revenue Dashboard</div>
-            <div class="yes">✓</div>
-            <div class="yes">✓</div>
-          </div>
-          <div class="compare-row">
-            <div>Platform Fee Breakdown</div>
-            <div class="yes">✓</div>
-            <div class="yes">✓</div>
-          </div>
-          <div class="compare-row">
-            <div>Net Profit Tracking</div>
-            <div class="yes">✓</div>
-            <div class="yes">✓</div>
-          </div>
-          <div class="compare-row">
-            <div>Income History</div>
-            <div class="yes">✓</div>
-            <div class="yes">✓</div>
-          </div>
-
-          <div class="compare-group">Reporting</div>
-          <div class="compare-row">
-            <div>Accountant Export</div>
-            <div class="yes">✓</div>
-            <div class="yes">✓</div>
-          </div>
-          <div class="compare-row">
-            <div>Monthly Goal Tracking</div>
-            <div class="yes">✓</div>
-            <div class="yes">✓</div>
-          </div>
-          <div class="compare-row">
-            <div>Growth Health Score</div>
-            <div class="yes">✓</div>
-            <div class="yes">✓</div>
-          </div>
-
-          <div class="compare-group">Advanced Insights</div>
-          <div class="compare-row">
-            <div>Advanced Projections</div>
-            <div class="no">—</div>
-            <div class="yes">✓</div>
-          </div>
-          <div class="compare-row">
-            <div>Revenue Intelligence</div>
-            <div class="no">—</div>
-            <div class="yes">✓</div>
-          </div>
-          <div class="compare-row">
-            <div>Revenue Efficiency Panel</div>
-            <div class="no">—</div>
-            <div class="yes">✓</div>
-          </div>
-          <div class="compare-row">
-            <div>Priority Support</div>
-            <div class="no">—</div>
-            <div class="yes">✓</div>
-          </div>
-        </div>
-
-        <div class="cta-band">
-          <p>
-            <strong>Know what you earn. Know what you keep. Know what comes next.</strong>
-            ProfitFlowOS helps you run your creator business with more clarity and less chaos.
-          </p>
-
-          <a
-            class="btn btn-primary"
-            href="https://saa-s-starter-kit-gutoflnbase.replit.app/quick-start"
-          >
-            Start Founder Access
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div>ProfitFlowOS — Financial operating system for serious creators.</div>
-
-    <div class="footer-line">
-      Support:
-      <a href="mailto:guto.jump@profitflowos.com">guto.jump@profitflowos.com</a>
-      &nbsp;|&nbsp;
-      Phone:
-      <a href="tel:+5548996237322">+55 48 99623 7322</a>
     </div>
+  </header>
 
-    <div class="footer-line">
-      <a href="/privacy.html">Privacy Policy</a>
-      &nbsp;|&nbsp;
-      <a href="/terms.html">Terms of Service</a>
-      &nbsp;|&nbsp;
-      <a href="/refund.html">Refund Policy</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge">
+        <span class="dot"></span>
+        Financial operating system for serious creators
+      </div>
+
+      <h1>
+        See what you actually keep <span class="accent">after fees.</span>
+      </h1>
+
+      <p>
+        Track revenue, fees, profit, and tax reserve across platforms without spreadsheet chaos.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://profitflowos.com/preview">Start Founder Access</a>
+        <a class="btn btn-secondary" href="#pricing">See Pricing</a>
+      </div>
+
+      <div class="hero-note">
+        Built for creators tracking income across multiple platforms.
+      </div>
+
+      <!-- LIGHTWEIGHT APP PREVIEW BLOCK -->
+      <div class="hero-panel">
+        <div class="hero-panel-grid">
+          <div class="mini-card">
+            <div class="mini-card-label">Gross Revenue</div>
+            <div class="mini-card-value">$12,480</div>
+            <div class="mini-card-note green">+18.2% this period</div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-card-label">Net Profit</div>
+            <div class="mini-card-value green">$9,216</div>
+            <div class="mini-card-note">73.8% margin</div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-card-label">Suggested Tax Reserve</div>
+            <div class="mini-card-value">$2,295</div>
+            <div class="mini-card-note">What to set aside for taxes</div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-card-label">Monthly Growth</div>
+            <div class="mini-card-value blue">+18.2%</div>
+            <div class="mini-card-note">Track progress over time</div>
+          </div>
+        </div>
+
+        <div class="hero-panel-bottom">
+          <div class="list-card">
+            <h3>Recent Income</h3>
+            <ul class="income-list">
+              <li>
+                <span><span class="income-name">OnlyFans</span> — Subscription</span>
+                <strong class="green">+$2,850</strong>
+              </li>
+              <li>
+                <span><span class="income-name">Telegram</span> — PPV / Locked Content</span>
+                <strong class="green">+$1,420</strong>
+              </li>
+              <li>
+                <span><span class="income-name">Direct Sales</span> — Direct Sale</span>
+                <strong class="green">+$980</strong>
+              </li>
+              <li>
+                <span><span class="income-name">Fansly</span> — Subscription</span>
+                <strong class="green">+$760</strong>
+              </li>
+            </ul>
+          </div>
+
+          <div class="insight-card">
+            <h3>What becomes clear</h3>
+            <ul class="income-list">
+              <li>
+                <span class="income-name">Highest net source</span>
+                <span>OnlyFans</span>
+              </li>
+              <li>
+                <span class="income-name">Biggest fee drain</span>
+                <span>Telegram</span>
+              </li>
+              <li>
+                <span class="income-name">Top income type</span>
+                <span>Subscription</span>
+              </li>
+              <li>
+                <span class="income-name">Tax reserve</span>
+                <span>Suggested, not guessed</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section">
+    <div class="container">
+      <h2>Your creator business is growing. Your financial clarity probably isn’t.</h2>
+      <p class="sub">
+        Most creators can track views. Very few can clearly track margin, fees, taxes, and what they actually keep.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon-box">↗</div>
+          <h3>Revenue is fragmented</h3>
+          <p>
+            Income comes from multiple platforms, offers, and subscriptions — but the full financial picture stays disconnected.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon-box">%</div>
+          <h3>Margin is hard to see</h3>
+          <p>
+            Fees, taxes, and platform cuts quietly eat profit while gross revenue still looks healthy on the surface.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon-box">⌛</div>
+          <h3>Manual tracking creates friction</h3>
+          <p>
+            The more serious the business gets, the more painful spreadsheets and manual finance tracking become.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section">
+    <div class="container">
+      <h2>Built for creators who run real businesses</h2>
+      <p class="sub">
+        Everything you need to understand what you earn, what you lose, and what you actually keep.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon-box">↗</div>
+          <h3>Revenue Tracking</h3>
+          <p>
+            Track income across platforms in one place with a clearer view of business performance.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon-box">%</div>
+          <h3>Margin Visibility</h3>
+          <p>
+            Understand fees, taxes, and real net profit instead of relying on top-line revenue alone.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon-box">⌄</div>
+          <h3>Forecasting &amp; Control</h3>
+          <p>
+            Spot patterns, track progress, and make better financial decisions with less chaos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="section">
+    <div class="container">
+      <h2>From clarity to control in 3 simple steps</h2>
+      <p class="sub">
+        Choose your platform. Preview your financial picture. Save your workspace and start tracking real numbers.
+      </p>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Choose your platform and clarity goal</h3>
+          <p>
+            Start with the revenue sources and financial questions that match your business.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Preview your dashboard and financial insights</h3>
+          <p>
+            See revenue, fees, profit, and tax reserve before committing to another spreadsheet-heavy workflow.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Save your workspace and keep building</h3>
+          <p>
+            Create your account, save your setup, and continue tracking real revenue with more control.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2>Unlock clarity on what you actually keep.</h2>
+      <p class="sub">
+        See revenue, fees, profit, and tax reserve across platforms with less guesswork and more control.
+      </p>
+
+      <div class="pricing-bridge">
+        You’ve started tracking real revenue. Unlock full access to keep building your financial view.
+      </div>
+
+      <div class="plans">
+        <article class="plan plan--primary">
+          <div class="eyebrow">Founder Early Access</div>
+          <div class="micro">Limited early access pricing</div>
+
+          <div class="tagline">
+            For creators who want clearer revenue, fees, profit, and tax visibility.
+          </div>
+
+          <div class="price">
+            <strong>$9</strong>
+            <span>/mo</span>
+          </div>
+
+          <div class="support-copy">
+            Founder pricing is for early users who want clearer revenue, fees, profit, and tax visibility as the product evolves.
+          </div>
+
+          <div class="mini-title">What you unlock</div>
+          <ul class="mini-bullets">
+            <li><span class="check">✓</span> See what you keep after fees</li>
+            <li><span class="check">✓</span> Spot your biggest fee drain</li>
+            <li><span class="check">✓</span> Set aside taxes with more confidence</li>
+          </ul>
+
+          <a class="btn btn-primary" style="width:100%; margin-top:18px;" href="https://profitflowos.com/pricing">
+            Unlock monthly access
+          </a>
+
+          <a class="muted-link" href="https://profitflowos.com/preview">Keep exploring first</a>
+
+          <div class="reassure">Start in minutes. No spreadsheet setup required.</div>
+          <div class="reassure">Built for creators tracking income across multiple platforms.</div>
+
+          <ul class="feature-list" style="margin-top:18px;">
+            <li><span class="check">✓</span><span>Track revenue, fees, profit, and suggested tax reserve</span></li>
+            <li><span class="check">✓</span><span>See highest net source and biggest fee drain</span></li>
+            <li><span class="check">✓</span><span>Understand platform mix and income-type mix</span></li>
+            <li><span class="check">✓</span><span>Get a cleaner financial view without spreadsheet chaos</span></li>
+          </ul>
+        </article>
+
+        <article class="plan">
+          <div class="recommended">When you're ready</div>
+          <div class="eyebrow eyebrow-neutral">Pro</div>
+
+          <div class="tagline">
+            Deeper visibility and advanced controls for when you want more.
+          </div>
+
+          <div class="price">
+            <strong>$29</strong>
+            <span>/mo</span>
+          </div>
+
+          <div class="support-copy">
+            Advanced financial intelligence for operators ready to scale with more precision.
+          </div>
+
+          <a class="btn btn-secondary" style="width:100%; margin-top:18px;" href="https://profitflowos.com/pricing">
+            Explore Pro
+          </a>
+
+          <ul class="feature-list" style="margin-top:18px;">
+            <li><span class="check">✓</span><span>Advanced insights and deeper visibility</span></li>
+            <li><span class="check">✓</span><span>More control for larger or more complex workflows</span></li>
+            <li><span class="check">✓</span><span>Built for teams and more serious operators</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="compare-note">
+        You can start with Founder Early Access and move to Pro later.
+      </div>
+
+      <div class="compare-note" style="margin-top:12px;">
+        Need more detail? Compare access below.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>ProfitFlowOS — financial clarity for subscription creators.</div>
+
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="refund.html">Refund</a>
+      <a href="terms.html">Terms</a>
     </div>
   </footer>
+
 </body>
 </html>
