@@ -84,10 +84,17 @@
       box-shadow: 0 10px 24px rgba(77, 141, 255, 0.2);
     }
 
-    .nav-actions,
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     .hero-actions {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
     }
@@ -173,7 +180,6 @@
 
     .hero-actions {
       margin-top: 28px;
-      justify-content: center;
     }
 
     .hero-note {
@@ -411,7 +417,6 @@
       color: var(--muted);
       font-size: 16px;
       margin-bottom: 18px;
-      max-width: 520px;
     }
 
     .price {
@@ -593,7 +598,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <header class="nav">
     <div class="container nav-inner">
       <div class="brand">
@@ -608,7 +612,6 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="container">
       <div class="badge">
@@ -633,7 +636,6 @@
         Built for creators tracking income across multiple platforms.
       </div>
 
-      <!-- LIGHTWEIGHT APP PREVIEW BLOCK -->
       <div class="hero-panel">
         <div class="hero-panel-grid">
           <div class="mini-card">
@@ -710,7 +712,6 @@
     </div>
   </section>
 
-  <!-- PROBLEM -->
   <section class="section">
     <div class="container">
       <h2>Your creator business is growing. Your financial clarity probably isn’t.</h2>
@@ -746,7 +747,6 @@
     </div>
   </section>
 
-  <!-- BENEFITS -->
   <section class="section">
     <div class="container">
       <h2>Built for creators who run real businesses</h2>
@@ -782,7 +782,6 @@
     </div>
   </section>
 
-  <!-- STEPS -->
   <section class="section">
     <div class="container">
       <h2>From clarity to control in 3 simple steps</h2>
@@ -818,7 +817,6 @@
     </div>
   </section>
 
-  <!-- PRICING -->
   <section class="pricing" id="pricing">
     <div class="container">
       <h2>Unlock clarity on what you actually keep.</h2>
@@ -855,7 +853,7 @@
             <li><span class="check">✓</span> Set aside taxes with more confidence</li>
           </ul>
 
-          <a class="btn btn-primary" style="width:100%; margin-top:18px;" href="https://profitflowos.com/pricing">
+          <a class="btn btn-primary" style="width:100%; margin-top:18px;" href="https://profitflowos.com/">
             Unlock monthly access
           </a>
 
@@ -889,7 +887,7 @@
             Advanced financial intelligence for operators ready to scale with more precision.
           </div>
 
-          <a class="btn btn-secondary" style="width:100%; margin-top:18px;" href="https://profitflowos.com/pricing">
+          <a class="btn btn-secondary" style="width:100%; margin-top:18px;" href="https://profitflowos.com/">
             Explore Pro
           </a>
 
@@ -911,7 +909,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div>ProfitFlowOS — financial clarity for subscription creators.</div>
 
